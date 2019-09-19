@@ -5,7 +5,7 @@
 </div>
 <div class="form-group {{ $errors->has('img') ? 'has-error' : ''}}">
     <label for="img" class="control-label">{{ 'Img' }}</label>
-    <input class="form-control" name="img" type="text" id="img" value="{{ isset($project->img) ? $project->img : ''}}" >
+    <input class="form-control" name="img" type="file" id="img" value="{{ isset($project->img) ? $project->img : ''}}" >
     {!! $errors->first('img', '<p class="help-block">:message</p>') !!}
 </div>
 

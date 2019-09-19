@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 use App\Project;
 use Illuminate\Http\Request;
 
@@ -50,10 +51,16 @@ class ProjectsController extends Controller
      */
     public function store(Request $request)
     {
-        
-        $requestData = $request->all();
-        
-        Project::create($requestData);
+
+        $image = request()->file('img');
+        $name = rand(1000, 1000).'.'.$image->getClientOriginalExtension();
+
+        Storage::disk('public')->put($name,  File::get($image));
+
+        Project::create([
+            'title'=> $request->get('title'),
+            'img' => $name
+        ]);
 
         return redirect('admin/projects')->with('flash_message', 'Project added!');
     }
@@ -96,9 +103,9 @@ class ProjectsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+
         $requestData = $request->all();
-        
+
         $project = Project::findOrFail($id);
         $project->update($requestData);
 

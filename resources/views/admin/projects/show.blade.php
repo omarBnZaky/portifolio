@@ -1,13 +1,12 @@
-@extends('layouts.app')
+@extends('layouts.master')
 
 @section('content')
     <div class="container">
         <div class="row">
-            @include('admin.sidebar')
 
-            <div class="col-md-9">
+            <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">Project {{ $project->id }}</div>
+                    <div class="card-header">Project {{ $project->title }}</div>
                     <div class="card-body">
 
                         <a href="{{ url('/admin/projects') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
@@ -27,7 +26,8 @@
                                     <tr>
                                         <th>ID</th><td>{{ $project->id }}</td>
                                     </tr>
-                                    <tr><th> Title </th><td> {{ $project->title }} </td></tr><tr><th> Img </th><td> {{ $project->img }} </td></tr>
+                                    <tr><th> Title </th><td> {{ $project->title }} </td></tr>
+                                    <tr><th> Img </th><td><img src="{{asset('projects/'.$project->img)}}" width="500px" height="500px"> </td></tr>
                                 </tbody>
                             </table>
                         </div>

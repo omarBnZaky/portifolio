@@ -1,4 +1,4 @@
-@include('inc.head')
+@include('admin.inc.head')
 
 @yield('content')
 @yield('about')
@@ -10,4 +10,4 @@
 
 
 
-@include('inc.footer')
+@include('admin.inc.footer')
